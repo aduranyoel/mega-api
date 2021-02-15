@@ -61,7 +61,7 @@ router.get('/:idCourse', (req, res) => {
     const idCourse = req.params['idCourse'];
     let courseFounded = null, response = null;
     for (let [account, course] of Object.entries(cache)) {
-        const exist = course.children?.find(c => c.nodeId === idCourse);
+        const exist = course.children.find(c => c.nodeId === idCourse);
         if (exist) {
             courseFounded = exist;
             break;
