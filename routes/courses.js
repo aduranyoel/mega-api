@@ -5,7 +5,10 @@ const
     cache = require('../src/cache'),
     Node = require('../src/node'),
     logger = require('../src/logger'),
-    accounts = [{accountId: 1, email: 'beiiakotmghumoqgrh@niwghx.com', password: 'Yoel44901'}];
+    accounts = [
+        {accountId: 1, email: 'beiiakotmghumoqgrh@niwghx.com', password: 'Yoel44901', recovery: '1rqhvSPmPGSN-40KeWZjBw'},
+        {accountId: 2, email: 'vjqpeuizcvbleytvqw@miucce.com', password: 'Yoel44901', recovery: 'POFbAtEd3QRikCUNPF_vjQ'}
+    ];
 let interval;
 
 router.get('/', (req, res) => {
@@ -53,6 +56,28 @@ router.get('/embed', (req, res) => {
     }
 });
 
+router.get('/:idCourse', (req, res) => {
+
+    const idCourse = req.params['idCourse'];
+    let courseFounded = null, response = null;
+    for (let [account, course] of Object.entries(cache)) {
+        const exist = course.children?.find(c => c.nodeId === idCourse);
+        if (exist) {
+            courseFounded = exist;
+            break;
+        }
+    }
+
+    if (courseFounded) {
+        response = getNodes(courseFounded);
+    }
+
+    res.json({
+        response,
+        error: null
+    })
+});
+
 function getAllCourses() {
     return new Promise(resolve => {
         let readyAccounts = 0, totalAccounts = accounts.length, readyCourses = 0, totalCourses = 0;
@@ -83,10 +108,10 @@ function getAllCourses() {
         });
 
         function checkFinally() {
-            if ((readyAccounts === totalAccounts) && readyCourses === totalCourses) {
-            	logger('Courses loaded');
-            	resolve(true);
-			}
+            if ((readyAccounts === totalAccounts) && (readyCourses === totalCourses)) {
+                logger('Courses loaded');
+                resolve(true);
+            }
         }
     })
 }
