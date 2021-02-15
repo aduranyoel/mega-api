@@ -85,9 +85,9 @@ function getAllCourses() {
             const {accountId, ...login} = account;
             new mega.Storage(login, (err, res) => {
                 ++readyAccounts;
-                const courses = res?.root?.children?.find(n => n.name === 'courses');
+                const courses = res.root.children.find(n => n.name === 'courses');
                 if (courses) {
-                    totalCourses += courses?.children?.length || 0;
+                    totalCourses += courses.children.length || 0;
                     cache[accountId] = courses;
                     courses.children.forEach((course, index) => {
                         const data = course.children.find(c => c.name === 'data.json');
@@ -141,7 +141,7 @@ function getCoursesFromCache() {
 function find(path, node) {
     const nodesPath = path.split('/');
     const isDeep = nodesPath.length > 1;
-    if (!Array.isArray(node?.children)) return null;
+    if (!Array.isArray(node.children)) return null;
     if (isDeep) {
         const directory = node.children.find(n => n.type === 1 && n.nodeId === nodesPath.slice(0, 1).join());
         if (directory) {
