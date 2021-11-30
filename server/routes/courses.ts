@@ -9,13 +9,13 @@ const accounts = [
     {
         accountId: 1,
         email: 'beiiakotmghumoqgrh@niwghx.com',
-        password: 'Yoel44901',
+        password: 'XXX',
         recovery: '1rqhvSPmPGSN-40KeWZjBw'
     },
     {
         accountId: 2,
         email: 'vjqpeuizcvbleytvqw@miucce.com',
-        password: 'Yoel44901',
+        password: 'XXX',
         recovery: 'POFbAtEd3QRikCUNPF_vjQ'
     }
 ];
