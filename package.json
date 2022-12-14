@@ -30,7 +30,7 @@
   "dependencies": {
     "copyfiles": "^2.4.1",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "megajs": "^0.17.2",
     "typescript": "^4.1.5"
   }
